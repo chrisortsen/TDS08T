@@ -13,5 +13,13 @@
             Email = email;
             Quarto = quarto;
         }
+
+        public override string ToString()
+        {
+            return
+                        Quarto + ": " +
+                        Nome + ", " +
+                        Email;
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace Aula13_VetoresPT2
                 string email = Console.ReadLine();
                 Console.WriteLine("Digite o numero do quarto desejado: ");
                 int quarto = int.Parse(Console.ReadLine());
-                estudante[i] = new Estudantes(nome, email, quarto);
+                estudante[quarto] = new Estudantes(nome, email, quarto);
                 Console.WriteLine();
             }
             Console.Clear();
@@ -39,6 +39,7 @@ namespace Aula13_VetoresPT2
             Console.WriteLine("Quartos ocupados: ");
             for (int i = 0; i < n; i++)
             {
+                if(estudante[i] != null)
                 Console.WriteLine(estudante[i].Quarto + ": " + estudante[i].Nome + ", " + estudante[i].Email);
             }
         }

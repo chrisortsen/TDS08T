@@ -14,6 +14,8 @@ namespace SA02_ChristianoCorreaOrtsen
         public string categoria { get; set; }
         public int genero { get; set; }
         public string descricao { get; set; }
+
+        public string ingredientes { get; set; }
         public int codreceita { get; set; }
 
     }

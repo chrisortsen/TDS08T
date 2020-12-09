@@ -8,6 +8,13 @@ namespace SA02_ChristianoCorreaOrtsen
     {
         static void Main(string[] args)
         {
+            //SA02 CHRISTIANO CORREA ORTSEN
+            //TDS08T
+
+            Console.WriteLine("Sistema - Gestão de Receitas de Culinária");
+            Console.WriteLine();
+            Console.WriteLine("MENU PRINCIPAL");
+
             Receitas v = new Receitas();
 
             List<Receitas> receitas = new List<Receitas>();
@@ -21,6 +28,8 @@ namespace SA02_ChristianoCorreaOrtsen
             Console.WriteLine("5 - Listar Receitas por dificuldade");
             Console.WriteLine("6 - Listar Receitas por categoria");
             Console.WriteLine("7 - Listar Receitas por tempo de preparação");
+            Console.WriteLine("8 - Cotação de ingredientes");
+            Console.WriteLine("9 - Valor estimado da receita");
             Console.WriteLine();
             Console.Write("Escolha uma das opções do menu: ");
             int menu = int.Parse(Console.ReadLine());
@@ -63,7 +72,7 @@ namespace SA02_ChristianoCorreaOrtsen
                     Console.WriteLine("Insira o numero de pessoas que a receita serve: ");
 
                     receitas[x].servenumero = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Insira a categoria da receita (1 Carne, 2 Peixe, 3 Marisco, 4 Pastelaria, 5 Sobremesas, etc): ");
+                    Console.WriteLine("Insira a o dígito da categoria da receita (1 - Carne, 2 - Peixe, 3 - Marisco, 4 - Pastelaria, 5 - Sobremesas): ");
                     escolha = 0;
                     escolha = int.Parse(Console.ReadLine());
                     if (escolha == 1)
@@ -91,9 +100,9 @@ namespace SA02_ChristianoCorreaOrtsen
                         receitas[x].categoria = "Sobremesa";
                         receitas[x].genero = 5;
                     }
-
+                    Console.WriteLine("Insira os ingredientes da receita: ");
+                    receitas[x].ingredientes = Console.ReadLine();
                     Console.WriteLine("Insira o modo de preparo/descrição da receita: ");
-
                     receitas[x].descricao = Console.ReadLine();
                     x++;
                     Console.Clear();
@@ -102,9 +111,14 @@ namespace SA02_ChristianoCorreaOrtsen
                 case 2:
                     foreach (var item in receitas)
                     {
-                        Console.WriteLine("COD.: " + item.codreceita + " Nome: " + item.nome);
-                        //   Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("COD.: " + item.codreceita + " - Nome: " + item.nome);
+                        Console.WriteLine("Tempo de Preparo: " + item.tempopreparacao + " minutos" + " - Nivel de Dificuldade: " + item.dificuldade);
+                        Console.WriteLine("Numero de porções: " + item.servenumero + " - Categoria: " + item.categoria);
+                        Console.WriteLine("Ingredientes: " + item.ingredientes);
+                        Console.WriteLine("Descrição/Modo de Preparo: ");
+                        Console.WriteLine(item.descricao);
                         Console.WriteLine();
+                        Console.WriteLine("--------------------");
                     }
                     Console.Write("Insira o CODIGO da receita que deseja excluir, caso queira voltar direto ao menu principal digite 0: ");
                     escolha = 0;
@@ -150,9 +164,8 @@ namespace SA02_ChristianoCorreaOrtsen
                             Console.WriteLine("Opção Invalida");
                         }
                         Console.WriteLine("Insira o numero de pessoas que a receita serve: ");
-
                         receitas[escolha - 1].servenumero = int.Parse(Console.ReadLine());
-                        Console.WriteLine("Insira a categoria da receita (1 Carne, 2 Peixe, 3 Marisco, 4 Pastelaria, 5 Sobremesas, etc): ");
+                        Console.WriteLine("Insira a o dígito da categoria da receita (1 - Carne, 2 - Peixe, 3 - Marisco, 4 - Pastelaria, 5 - Sobremesas): ");
                         opcao = 0;
                         opcao = int.Parse(Console.ReadLine());
                         if (opcao == 1)
@@ -180,7 +193,8 @@ namespace SA02_ChristianoCorreaOrtsen
                             receitas[escolha - 1].categoria = "Sobremesa";
                             receitas[escolha - 1].genero = 5;
                         }
-
+                        Console.WriteLine("Insira os ingredientes da receita: ");
+                        receitas[escolha - 1].ingredientes = Console.ReadLine();
                         Console.WriteLine("Insira o modo de preparo/descrição da receita: ");
 
                         receitas[escolha - 1].descricao = Console.ReadLine();
@@ -192,9 +206,14 @@ namespace SA02_ChristianoCorreaOrtsen
                 case 3:
                     foreach (var item in receitas)
                     {
-                        Console.WriteLine("COD.: " + item.codreceita + " Nome: " + item.nome);
-                        //   Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("COD.: " + item.codreceita + " - Nome: " + item.nome);
+                        Console.WriteLine("Tempo de Preparo: " + item.tempopreparacao + " minutos" + " - Nivel de Dificuldade: " + item.dificuldade);
+                        Console.WriteLine("Numero de porções: " + item.servenumero + " - Categoria: " + item.categoria);
+                        Console.WriteLine("Ingredientes: " + item.ingredientes);
+                        Console.WriteLine("Descrição/Modo de Preparo: ");
+                        Console.WriteLine(item.descricao);
                         Console.WriteLine();
+                        Console.WriteLine("--------------------");
                     }
                     Console.Write("Insira o CODIGO da receita que deseja excluir, caso queira voltar direto ao menu principal digite 0: ");
                     escolha = 0;
@@ -208,13 +227,17 @@ namespace SA02_ChristianoCorreaOrtsen
                         receitas.RemoveAt(escolha - 1);
                     }
                     goto Menu;
-                case 4:
 
-                    receitas.Sort();
+                case 4:
+                    IEnumerable<Receitas> codigo = receitas.OrderBy(codig => codig.codreceita);
                     foreach (var item in receitas)
                     {
-                        Console.WriteLine("COD.: " + item.codreceita + " Nome: " + item.nome);
-                        //   Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("COD.: " + item.codreceita + " - Nome: " + item.nome);
+                        Console.WriteLine("Tempo de Preparo: " + item.tempopreparacao + " minutos" + " - Nivel de Dificuldade: " + item.dificuldade);
+                        Console.WriteLine("Numero de porções: " + item.servenumero + " - Categoria: " + item.categoria);
+                        Console.WriteLine("Ingredientes: " + item.ingredientes);
+                        Console.WriteLine("Descrição/Modo de Preparo: ");
+                        Console.WriteLine(item.descricao);
                         Console.WriteLine();
                     }
                     Console.Write("Voltar para o menu = 0");
@@ -225,9 +248,14 @@ namespace SA02_ChristianoCorreaOrtsen
                     IEnumerable<Receitas> nivel = receitas.OrderBy(dific => dific.lvl);
                     foreach (var item in nivel)
                     {
-                        Console.WriteLine("COD.: " + item.codreceita + " Nome: " + item.nome);
-                        //   Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("COD.: " + item.codreceita + " - Nome: " + item.nome);
+                        Console.WriteLine("Tempo de Preparo: " + item.tempopreparacao + " minutos" + " - Nivel de Dificuldade: " + item.dificuldade);
+                        Console.WriteLine("Numero de porções: " + item.servenumero + " - Categoria: " + item.categoria);
+                        Console.WriteLine("Ingredientes: " + item.ingredientes);
+                        Console.WriteLine("Descrição/Modo de Preparo: ");
+                        Console.WriteLine(item.descricao);
                         Console.WriteLine();
+                        Console.WriteLine("--------------------");
                     }
                     Console.Write("Voltar para o menu = 0");
                     escolha = int.Parse(Console.ReadLine());
@@ -237,9 +265,14 @@ namespace SA02_ChristianoCorreaOrtsen
                     IEnumerable<Receitas> cat = receitas.OrderBy(categ => categ.genero);
                     foreach (var item in cat)
                     {
-                        Console.WriteLine("COD.: " + item.codreceita + " Nome: " + item.nome);
-                        //   Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("COD.: " + item.codreceita + " - Nome: " + item.nome);
+                        Console.WriteLine("Tempo de Preparo: " + item.tempopreparacao + " minutos" + " - Nivel de Dificuldade: " + item.dificuldade);
+                        Console.WriteLine("Numero de porções: " + item.servenumero + " - Categoria: " + item.categoria);
+                        Console.WriteLine("Ingredientes: " + item.ingredientes);
+                        Console.WriteLine("Descrição/Modo de Preparo: ");
+                        Console.WriteLine(item.descricao);
                         Console.WriteLine();
+                        Console.WriteLine("--------------------");
                     }
                     Console.Write("Voltar para o menu = 0");
                     escolha = int.Parse(Console.ReadLine());
@@ -249,20 +282,18 @@ namespace SA02_ChristianoCorreaOrtsen
                     IEnumerable<Receitas> tempopreparo = receitas.OrderBy(temp => temp.tempopreparacao);
                     foreach (var item in tempopreparo)
                     {
-                        Console.WriteLine("COD.: " + item.codreceita + " Nome: " + item.nome);
-                        //   Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------");
+                        Console.WriteLine("COD.: " + item.codreceita + " - Nome: " + item.nome);
+                        Console.WriteLine("Tempo de Preparo: " + item.tempopreparacao + " minutos" + " - Nivel de Dificuldade: " + item.dificuldade);
+                        Console.WriteLine("Numero de porções: " + item.servenumero + " - Categoria: " + item.categoria);
+                        Console.WriteLine("Ingredientes: " + item.ingredientes);
+                        Console.WriteLine("Descrição/Modo de Preparo: ");
+                        Console.WriteLine(item.descricao);
                         Console.WriteLine();
+                        Console.WriteLine("--------------------");
                     }
                     Console.Write("Voltar para o menu = 0");
                     escolha = int.Parse(Console.ReadLine());
                     goto Menu;
-
-
-
-
-
-
-
             }
         }
     }
